@@ -2,6 +2,10 @@ import requests
 import json
 import os
 print("in the script")
+
+pr_diff = os.environ['PR_DIFF']
+print(pr_diff)
+
 OPENAI_API_KEY = os.getenv("OPENAI_API_KEY")
 
 url = "https://api.openai.com/v1/chat/completions"
