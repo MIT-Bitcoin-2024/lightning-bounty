@@ -111,7 +111,7 @@ jobs:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           script: |
             const message = `${{ steps.openai_request.outputs.completion_output }}`.replace(/\\n/g, '\n');
-;
+            
             github.rest.issues.createComment({
                 owner: context.repo.owner,
                 repo: context.repo.repo,
