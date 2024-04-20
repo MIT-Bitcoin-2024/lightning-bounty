@@ -1,7 +1,11 @@
+ ![alt text](https://github.com/MIT-Bitcoin-2024/lightning-bounty/blob/main/assets/img/banner.png?raw=true)
+
 GitHub Lightning Bounties ⚡️
 ============================
 
 Welcome to the **GitHub Lightning Bounties** project, innovatively combining GitHub Actions, Lightning Network payments, and Large Language Models (LLMs) to elevate the open-source collaboration experience.
+
+ ![alt text](https://github.com/MIT-Bitcoin-2024/lightning-bounty/blob/main/assets/img/projectLogo3.png?raw=true)
 
 Hackathon Details 🚀
 --------------------
@@ -24,7 +28,7 @@ We also believe in rewarding contributors. Hence, payments can be refunded if PR
 Architecture Overview 🏗️
 -------------------------
 
-Please refer to the attached diagram for a visual representation of the project workflow.
+ ![alt text](https://github.com/MIT-Bitcoin-2024/lightning-bounty/blob/main/assets/img/gh-bounty-1.png?raw=true)
 
 Stack and Tools 🛠️
 -------------------
