@@ -13,8 +13,6 @@ Hackathon Details 🚀
 **Name**: MIT Bitcoin Hackathon: Scaling Up  
 **Dates**: April 19th-21st, 2024  
 **Venue**: MIT / Online  
-**Registration**: [MIT Bitcoin Club](https://twitter.com/MITBitcoinClub)  
-**Contact**: mitbitcoinexpo@gmail.com
 
 About the Project 📝
 --------------------
