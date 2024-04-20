@@ -10,7 +10,8 @@ pr_diff = os.environ['PR_DIFF']
 OPENAI_API_KEY = os.getenv("OPENAI_API_KEY")
 
 full_prompt = ""
-full_prompt += "In the following diff, please provide a brief summary of the changes made in the PR. \n\n"
+# full_prompt += "In the following diff, please provide a brief summary of the changes made in the PR. \n\n"
+full_prompt += "In the following diff, Turn any Spanish variable name into English \n\n"
 full_prompt += f"```diff\n{pr_diff}\n```"
 
 url = "https://api.openai.com/v1/chat/completions"
