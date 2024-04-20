@@ -4,6 +4,7 @@
 
 import os, time, uuid, sys, glob
 from datetime import datetime
+import openai
 from typing import (
     Union, 
     Any,
@@ -35,11 +36,12 @@ from lime.common.inference.interface import (
     ModelObjVariant,
 )
 from lime.common.models.state import (
-    ConfigLoader
+    ConfigLoader,
+    TypeLoader,
 )
 from lime.common.models.errs import (
     QuietError,
-    BaseQuietError,
+    
 )
 
 
@@ -309,7 +311,9 @@ def setup_parser(parser):
     
 
 def main(args):
-
+    '''
+        Adding a doc string
+    '''
     args = vars(args)
 
     if args.get('debug'):
