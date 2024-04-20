@@ -35,11 +35,12 @@ except Exception as e:
     output_data = "Error: Unable to get completion from OpenAI API"
 
 print(output_data)
-# output_data.replace("\n", "\\n")
+
+output_data.replace("\n", "\\n")
+print(f"::set-output name=completion_output::{output_data}")
+
+# print("::set-output name=completion_output::<<EOF")
 # print(f"::set-output name=completion_output::{output_data}")
 # print("::set-output name=completion_output::<<EOF")
-
-print(f"::set-output name=completion_output::{output_data}")
-print("::set-output name=completion_output::<<EOF")
-print(output_data)
-print("EOF")
+# print(output_data)
+# print("EOF")
