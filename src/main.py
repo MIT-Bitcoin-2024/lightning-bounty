@@ -120,6 +120,8 @@ def eval_sheet(
             name            = question.name,
             meta_data       = question.meta,
             gen_params      = gen_params,
+            tu_nombre       = question.tu_nombre,
+            tu_apellido     = question.tu_apellido,
             ground_truth    = question.answer,
             question_sys    = question.text_sys,
             question_usr    = question.text_usr,
