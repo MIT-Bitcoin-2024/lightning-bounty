@@ -71,6 +71,15 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2
 
+      - name: Print diff
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const diff_url = context.payload.pull_request.diff_url
+            const result = await github.request(diff_url)
+            console.log(result)
+            
+
       - name: Set up Python
         uses: actions/setup-python@v2
         with:
