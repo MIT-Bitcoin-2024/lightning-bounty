@@ -36,7 +36,7 @@ except Exception as e:
 
 print(output_data)
 
-output_data.replace("\n", "\\n")
+output_data = output_data.replace("\n", "\\n")
 print(f"::set-output name=completion_output::{output_data}")
 
 # print("::set-output name=completion_output::<<EOF")
