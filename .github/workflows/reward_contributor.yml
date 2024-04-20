@@ -1,0 +1,37 @@
+name: Reward Contributor
+
+on:
+  pull_request:
+    types: [closed]
+    branches:
+      - main
+    # Only run when pull request is merged
+    # (optional, as closing a pull request for other reasons will also trigger this)
+    conditions:
+      - github.event_name == 'pull_request'
+      - github.event.action == 'closed'
+      - github.event.pull_request.merged == true
+
+jobs:
+  reward_contributor:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Setup Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: '3.11'
+
+      - name: Install requirements
+        run: pip install requests python-dotenv
+
+      - name: Run Python script
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          WALLET_BASE_URL: ${{ secrets.WALLET_BASE_URL }}
+          WALLET_API_KEY: ${{ secrets.PAY_INVOICE_API_KEY }}
+          PR_NUMBER: ${{ github.event.pull_request.number }}
+        run: |
+          python .github/scripts/reward_contributor.py
