@@ -39,11 +39,11 @@ Stack and Tools 🛠️
 Participating in the Hackathon 🤓
 ---------------------------------
 
-*   **Will Sutton**: Git
-*   **Mike Abramo**: Git
-*   **Pavel Kononov**: Git
-*   **Enrique Gamboa**: Git
-*   **Alex Gill**: Git
+*   **Will Sutton**: [git](https://github.com/sutt/gha-tut)
+*   **Mike Abramo**: [git](https://github.com/SonnyMonroe)
+*   **Pavel Kononov**: [git](https://github.com/super-jaba)
+*   **Enrique Gamboa**: [git](https://github.com/jegamboafuentes)
+*   **Alex Gill**: [git](https://github.com/devopsgill)
 
  ![alt text](https://github.com/MIT-Bitcoin-2024/lightning-bounty/blob/main/assets/img/team_picture.jpg?raw=true)
 
