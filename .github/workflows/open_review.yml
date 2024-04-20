@@ -81,10 +81,6 @@ jobs:
           python -m pip install --upgrade pip
           pip install requests
 
-      - name: Run hello
-        run: |
-          python hello.py
-
       - name: Run get_completion.py
         id: openai_request
         env:
