@@ -120,6 +120,9 @@ def eval_sheet(
             name            = question.name,
             meta_data       = question.meta,
             gen_params      = gen_params,
+            taboo_answers = [],
+            canary_strings = ["ef12-3f4-5a6-7b8-9c0d", "ef12-3f4-5a0-7b8-9c0d"],
+
             ground_truth    = question.answer,
             question_sys    = question.text_sys,
             question_usr    = question.text_usr,
@@ -204,6 +207,11 @@ def cleanup_tmp(tmp_output_fp: Union[None, str]) -> None:
             if BaseQuietError.debug_mode: BaseQuietError(err_msg)
             else:print(err_msg)
 
+def print_every_n(n: int, i: int, msg: str) -> None:
+    if i % n == 0:
+        print(msg)
+
+
 
 def batch_eval(
     sheet_fns: List[str],
@@ -216,8 +224,10 @@ def batch_eval(
     
     progress = MainProgressMsg(verbose_level=verbose_level)
 
-    progress.pre_loop(sheet_fns=sheet_fns)
+    print_every_n(1, 0, f'Running {model_name} on {len(sheet_fns)} sheets...'
 
+    progress.pre_loop(sheet_fns=sheet_fns)
+    # TODO - generate canary strings for this run
     try:
         # TODO - Make this init params
         infer_constructor_args = {
