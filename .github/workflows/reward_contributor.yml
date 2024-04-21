@@ -1,16 +1,20 @@
 name: Reward Contributor
 
 on:
-  pull_request:
+  pull_request_target:
     types: [closed]
     branches:
       - main
     # Only run when pull request is merged
     # (optional, as closing a pull request for other reasons will also trigger this)
     conditions:
-      - github.event_name == 'pull_request'
+      # - github.event_name == 'pull_request'
       - github.event.action == 'closed'
       - github.event.pull_request.merged == true
+
+permissions:
+  issues: write
+  pull-requests: write
 
 jobs:
   reward_contributor:
