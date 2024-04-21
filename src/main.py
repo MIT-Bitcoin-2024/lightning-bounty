@@ -314,8 +314,8 @@ def setup_parser(parser):
     parser.add_argument('-m', '--model_name',    type=str)
     parser.add_argument('-n', '--model_nick_name',    type=str)
     parser.add_argument('-y', '--dry_run',       action='store_true')
-    # parser.add_argument('-v', '--verbose',       action='count')
-    # parser.add_argument('-w', '--wet_run',       action='count')
+    parser.add_argument('-v', '--verbose',       action='count')
+    parser.add_argument('-w', '--wet_run',       action='count')
     parser.add_argument('-b', '--debug',         action='store_true')
     
 
@@ -325,6 +325,9 @@ def main(args):
 
     if args.get('debug'):
         QuietError.debug_mode = True
+
+    if args.get('verbose'):
+        QuietError.debug_mode = False
 
     sheet_fns       = get_sheet_fns(args['input_paths'])
 
