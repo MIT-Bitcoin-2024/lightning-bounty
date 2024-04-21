@@ -43,6 +43,8 @@ from lime.common.models.errs import (
 )
 
 
+print("testing")
+
 class ExecSettings(ConfigLoader):
     verbose = 0
     uuid_digits = 4
