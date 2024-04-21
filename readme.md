@@ -1,51 +1,63 @@
- ![alt text](https://github.com/MIT-Bitcoin-2024/lightning-bounty/blob/main/assets/img/banner.png?raw=true)
+![alt text](https://github.com/MIT-Bitcoin-2024/lightning-bounty/blob/main/assets/img/banner.png?raw=true)
 
-GitHub Lightning Bounties ⚡️
-============================
+# GitHub Lightning Bounties ⚡️
 
-Welcome to the **GitHub Lightning Bounties** project, innovatively combining GitHub Actions, Lightning Network payments, and Large Language Models (LLMs) to elevate the open-source collaboration experience.
+Welcome to the **GitHub Lightning Bounties.** Lightning Bounty is a groundbreaking project that revolutionizes code collaboration and incentivizes software developers using the power of Bitcoin. By integrating with GitHub Actions, Lightning Bounties automatically pays code contributors in Bitcoin for their valuable contributions to open-source projects.
 
- ![alt text](https://github.com/MIT-Bitcoin-2024/lightning-bounty/blob/main/assets/img/projectLogo3.png?raw=true)
+![alt text](https://github.com/MIT-Bitcoin-2024/lightning-bounty/blob/main/assets/img/projectLogo3.png?raw=true)
 
-Hackathon Details 🚀
---------------------
+## Hackathon Details 🚀
 
 **Name**: MIT Bitcoin Hackathon: Scaling Up  
 **Dates**: April 19th-21st, 2024  
-**Venue**: MIT / Online  
+**Venue**: MIT / Online
 
-About the Project 📝
---------------------
-
-**Target Project**: GitHub Lightning Bounties
+## About the Project 📝
 
 We aim to integrate LLMs for analyzing incoming pull requests (PRs) on GitHub. This will cater to various aspects such as security analysis, code quality, and completeness checks. We recognize that LLM API calls have a cost associated, which can escalate with spam PRs. Our solution is a system that employs the Bitcoin Lightning Network to require a small payment for each PR review, thereby filtering spam and covering API costs.
 
 We also believe in rewarding contributors. Hence, payments can be refunded if PRs are accepted, with potential bonuses for merged contributions.
 
-Architecture Overview 🏗️
--------------------------
+## Architecture Overview 🏗️
 
- ![alt text](https://github.com/MIT-Bitcoin-2024/lightning-bounty/blob/main/assets/img/gh-bounty-1.png?raw=true)
+![alt text](https://github.com/MIT-Bitcoin-2024/lightning-bounty/blob/main/assets/img/gh-bounty-1.png?raw=true)
 
-Stack and Tools 🛠️
--------------------
+## Stack and Tools 🛠️
 
-*   **GitHub Actions**: Utilize Python and Node.js scripts.
-*   **LNBits / LND**: Basic Lightning node setup.
-*   **Lime-Green**: A Python package for LLM evaluations.
-*   **Bring Your Own Setup**: Open to additional tools and libraries.
+- **GitHub Actions**: Utilize Python and Node.js scripts.
+- **LNBits / LND**: Basic Lightning node setup.
+- **Lime-Green**: A Python package for LLM evaluations.
+- **Bring Your Own Setup**: Open to additional tools and libraries.
 
-Participating in the Hackathon 🤓
----------------------------------
+## Participating in the Hackathon 🤓
 
-*   **Will Sutton**: [git](https://github.com/sutt/gha-tut)
-*   **Mike Abramo**: [git](https://github.com/SonnyMonroe)
-*   **Pavel Kononov**: [git](https://github.com/super-jaba)
-*   **Enrique Gamboa**: [git](https://github.com/jegamboafuentes)
-*   **Alex Gill**: [git](https://github.com/devopsgill)
+- **Will Sutton**: [git](https://github.com/sutt/gha-tut)
+- **Mike Abramo**: [git](https://github.com/SonnyMonroe)
+- **Pavel Kononov**: [git](https://github.com/super-jaba)
+- **Enrique Gamboa**: [git](https://github.com/jegamboafuentes)
+- **Alex Gill**: [git](https://github.com/devopsgill)
 
- ![alt text](https://github.com/MIT-Bitcoin-2024/lightning-bounty/blob/main/assets/img/team_picture.jpg?raw=true)
+## Key Features
+
+- **Automatic Payments**: Contributors receive Bitcoin payments automatically upon merging their pull requests.
+- **Enhanced Collaboration**: Encourages collaboration and fosters a sense of community among developers.
+- **Secure Transactions**: Built-in security measures ensure safe and secure Bitcoin transactions.
+- **Anti-Spam Mechanism**: Contributors are required to submit a small fee to a Lightning Network wallet, preventing spam and ensuring genuine contributions.
+
+## What's next for Lightning Bounties?
+
+**Customizable Bounty Payouts**:
+Looking ahead, we aim to give project owners and managers greater control over the bounty payouts on the Lightning Bounty platform. This will allow them to customize the reward amounts based on factors like code quality, complexity, and overall impact of the contributions.
+
+**Broader Language Support**:
+While we initially built Lightning Bounty with English and Spanish, we're eager to make our platform as globally accessible as possible. Open source development is a collaborative effort that knows no borders. Contributors from all corners of the world should feel empowered to participate regardless of their native tongue. By increasing language availability, we hope to lower barriers to entry and cultivate an even more diverse pool of talent.
+
+**Rewarding Code Contributions with NFTs**:
+Recognizing the potential of non-fungible tokens (NFTs) to serve as digital badges of honor, we aim to integrate an NFT rewards system into the Lightning Bounty platform. This will allow open-source developers who contribute high-quality code to receive free, unique NFTs that they can showcase as proof of their valuable work. By tying these NFTs to specific code contributions, we can create a new level of recognition and ownership for developers within the open-source ecosystem.
+
+**Expanding Cryptocurrency Payment Options**
+To further empower open-source developers and increase the accessibility of the Lightning Bounty platform, we plan to integrate support for a wider range of cryptocurrency payment options beyond just Bitcoin. This will include integrating Ethereum, Polygon, & Solana.
+
 
 How to test 💻
 -----------------
@@ -68,4 +80,7 @@ How to test 💻
  - PAY_INVOICE_KEY  (admin key for LNBits)
  - WALLET_API_KEY  (invoice/read key for LNBits)
  - WALLET_BASE_URL  (url for your LNBits instance)
+
+ ![alt text](https://github.com/MIT-Bitcoin-2024/lightning-bounty/blob/main/assets/img/team_picture.jpg?raw=true)
+
 
