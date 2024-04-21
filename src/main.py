@@ -304,7 +304,7 @@ def setup_parser(parser):
     parser.add_argument('-m', '--model_name',    type=str)
     parser.add_argument('-y', '--dry_run',       action='store_true')
     parser.add_argument('-v', '--verbose',       action='count')
-    # parser.add_argument('-w', '--wet_run',       action='count')
+    parser.add_argument('-w', '--wet_run',       action='count')
     parser.add_argument('-b', '--debug',         action='store_true')
     
 
