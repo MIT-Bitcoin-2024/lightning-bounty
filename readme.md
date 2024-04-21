@@ -50,4 +50,22 @@ Participating in the Hackathon 🤓
 How to test 💻
 -----------------
 
-xxx
+- Fork the repository and clone it to your local machine. 
+- Modify `src/main.py` to reflect some changes
+- Generate a lightning invoice and copy that string into `reward.txt`
+- Add and commit your changes, submit a pull request to the base repository.
+- This will kick off the GitHub action to request that 1 sat "dust" payment from you ("the contribtuor") to pay to the base repo ("the owner").
+    - As noted in video, we have two superfluous automations running here, chose the second one, the one that says "Please pay the invoice: lnbc10n1..." (not the one that says "Extracted values:...").
+- You'll see one of the github actions remains running (which is polling for payment confirmation) and should return with the message "Thank you for your payment!"
+- Now, request a reviewer to review your PR. (Either Enrique or Will will work for this test). After a few seconds you'll see a new action running:
+    - first it will say: "Payment has been recieved, sit tight, running openai query"
+    - then ~30 secs later it will return with a summary of your changes + a security vulnerability analysis.
+- Finally, we'll want to merge your PR and recieve your reward. Since your not a repository maintainer, you don't have this power. But we'll keep an eye out and try to merge it for you.
+    - note: currently there's no check for the amt of the reward, and we're not a rich node so anything larger than 100 sats will exceed our balance. So keep it small for now.
+
+**Alternatively:** You can copy the contents of `.github/` directory into your own repository and modify the `main.py` file and reporduce our work. Note you'll need to setup the appropriate secrets in your repository settings:
+ - OPENAI_API_KEY
+ - PAY_INVOICE_KEY  (admin key for LNBits)
+ - WALLET_API_KEY  (invoice/read key for LNBits)
+ - WALLET_BASE_URL  (url for your LNBits instance)
+
