@@ -61,7 +61,8 @@ class GithubService:
 def main():
     dotenv.load_dotenv()
 
-    BASE_URL: str = os.getenv("WALLET_BASE_URL")
+    # BASE_URL: str = os.getenv("WALLET_BASE_URL")
+    BASE_URL = "d5aedbf627.d.voltageapp.io"
     API_KEY: str = os.getenv("WALLET_API_KEY")
 
     GH_TOKEN = os.getenv("GITHUB_TOKEN")
