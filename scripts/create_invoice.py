@@ -58,7 +58,6 @@ class PaymentService:
             "Content-Type": "application/json"
         }
 
-        # TODO: Refactor
         for i in range(attempts):
             response = requests.get(url, headers=headers)
             if response.status_code == 200 and response.json()["paid"]:
@@ -100,7 +99,6 @@ class GithubService:
 def main():
     dotenv.load_dotenv()
 
-    # TODO: Null check
     BASE_URL: str = os.getenv("WALLET_BASE_URL")
     API_KEY: str = os.getenv("WALLET_API_KEY")
     INVOICE_AMOUNT: int = int(os.getenv("INVOICE_AMOUNT", 10))
@@ -124,13 +122,11 @@ def main():
             message=f"Please pay the invoice: {invoice.payment_request}"
         )
     except CreateInvoiceException:
-        # TODO: Refactor
         print("Couldn't create invoice")
     except GithubException as e:
         print("Couldn't post payment request")
         return
 
-    # TODO: Refactor
     is_paid = payment_service.check_payment(
         invoice.payment_hash,
         CHECK_PAYMENT_ATTEMPTS,
