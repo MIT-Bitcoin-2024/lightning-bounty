@@ -1,0 +1,69 @@
+name: QR Code
+"on":
+  pull_request_target:
+    types:
+      - opened
+    branches:
+      - QRcode_branch_4_23
+permissions:
+  issues: write
+  pull-requests: write
+jobs:
+  make_request:
+    runs-on: ubuntu-latest
+    steps:
+      - name: list files
+        run: |
+          ls -R
+      - name: make request
+        env:
+          INVOICE_KEY: "${{ secrets.INVOICE_KEY_1 }}"
+        run: |
+          response=$(curl -s -X POST \
+              -H "X-Api-Key: $INVOICE_KEY" \
+              -H "Content-Type: application/json" \
+              -d '{"out": false, "amount": 10, "memo": "okok"}' \
+              https://d5aedbf627.d.voltageapp.io/api/v1/payments)
+          echo "Server response:"
+          echo "$response"
+
+          #
+          payment_request=$(echo "$response" | jq -r '.payment_request')
+          echo "payment_request: $payment_request"
+
+          checking_id=$(echo "$response" | jq -r '.checking_id')
+          echo "checking_id: $checking_id"
+
+          # Use the extracted value in the next step
+          echo "::set-output name=payment_request::$payment_request"
+          echo "::set-output name=checking_id::$checking_id"
+        id: extract_values
+      - name: Use_extracted_values
+        run: >
+          echo "Extracted value 1 from previous step: ${{
+          steps.extract_values.outputs.payment_request }}"
+
+          echo "Extracted value 2 from previous step: ${{
+          steps.extract_values.outputs.checking_id }}"
+      - name: write_to_pr
+        uses: actions/github-script@v6
+        with:
+          github-token: "${{secrets.GITHUB_TOKEN}}"
+          script: >
+            const message = `Extracted values:
+
+            - payment_req: ${{ steps.extract_values.outputs.payment_request }}
+
+            - checking_id: ${{ steps.extract_values.outputs.checking_id }}
+
+
+            ![QR
+            Code](https://github.com/MIT-Bitcoin-2024/gha-tut/blob/master/assets/bitcoin.svg)`;
+
+
+            github.rest.issues.createComment({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: context.issue.number,
+              body: message
+            });
