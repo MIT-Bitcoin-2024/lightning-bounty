@@ -1,8 +1,18 @@
 import os
+import io
+import base64
 import time
-
+import qrcode
 import dotenv
 import requests
+
+
+def gen_qr_code(data: str) -> str:
+    qr_pil = qrcode.make(data)    
+    buf = io.BytesIO()
+    qr_pil.save(buf)
+    qr_base64 = base64.b64encode(buf.getvalue())
+    return qr_base64
 
 
 class Invoice:
@@ -118,10 +128,16 @@ def main():
 
         gh_service = GithubService(GH_TOKEN)
 
+        qr_code_data = gen_qr_code(invoice.payment_request)
+
+        message: str = ""
+        message += f"Please pay the invoice: {invoice.payment_request}\n\n"
+        message += f"![QR code](data:image/png;base64,{qr_code_data.decode('utf-8')})"
+
         gh_service.comment_on_pr(
             GH_REPO,
             PR_NUMBER,
-            message=f"Please pay the invoice: {invoice.payment_request}"
+            message=message,
         )
     except CreateInvoiceException:
         # TODO: Refactor
