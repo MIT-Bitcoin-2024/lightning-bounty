@@ -9,6 +9,52 @@ permissions:
   pull-requests: write
 
 jobs:
+  demo_qr:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Set up Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: '3.11'
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install qrcode
+
+      - name: Run qr_code.py
+        id: run_qr_script
+        run: |
+          python .github/scripts/qr_code.py
+
+      - name: Upload QR code as artifact
+        uses: actions/upload-artifact@v2
+        with:
+          name: qr-code
+          path: qr_code.png
+
+      - name: Download QR code artifact
+        uses: actions/download-artifact@v2
+        with:
+          name: qr-code
+
+      - name: Get artifact URL
+        id: artifact_url
+        run: echo "::set-output name=url::$(curl -s -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" https://api.github.com/repos/${{ github.repository }}/actions/artifacts | jq -r '.artifacts[0].archive_download_url')"
+
+      - name: Put artifact QR url in PR thread
+        uses: actions/github-script@v6
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          script: |
+            const output = `![QR Code](${{ steps.artifact_url.outputs.url }})`
+            github.rest.issues.createComment({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                issue_number: context.issue.number,
+                body: output,
+              });
+
   check_that_payment:
     runs-on: ubuntu-latest
     steps:
