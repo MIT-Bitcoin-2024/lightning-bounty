@@ -72,7 +72,7 @@ def eval_sheet(
 
     progress = SheetProgressMsg(verbose_level=verbose_level)
     
-    sheet_gen_params = extract_gen_params(sheet_obj.meta)
+    sheet_gen_params = extract_gen_params(sheet_obj.run_id)
 
     infer_obj.update_gen_params(sheet_gen_params)
 
@@ -80,7 +80,6 @@ def eval_sheet(
         header = HeaderOutput(
             sheet_name  = sheet_obj.name,
             sheet_fn    = sheet_obj.sheet_fn,
-            run_id      = run_id,
             name_model  = infer_obj.model_name,
             infer_params= infer_obj.get_gen_params(),
             lime_version= get_lime_version(),
