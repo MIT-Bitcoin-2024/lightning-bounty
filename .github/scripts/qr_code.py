@@ -29,7 +29,7 @@ def save_qr_code():
 
 # save_qr_code()
 
-def generate_qr(data: str, size: int = 250) -> str:
+def generate_qr(data: str, size: int = 350, margin: int = 25) -> str:
     """
     Calls QR Generator API to create a QR code storing the data passed
     :param data: string data to be encoded
@@ -38,7 +38,7 @@ def generate_qr(data: str, size: int = 250) -> str:
     :return: URL to the QR code
     """
     encoded_data = urllib.parse.quote(data)
-    return f"https://api.qrserver.com/v1/create-qr-code/?size={size}x{size}&data={encoded_data}"
+    return f"https://api.qrserver.com/v1/create-qr-code/?size={size}x{size}&margin={margin}&data={encoded_data}"
 
 # print(f'sys.argv: {sys.argv}')
 data = "lnbc20n1pnzgkh0pp5k2d7frgeqsmsgg3afl9x9m72s6kl5rpg22qhav4npwk3x98lc58sdqgdpjkcmr0cqzzsxqrrsssp53lyem2rze66e9ecml8hpx4ua34wengqhmpf905xrf5cp55cpak5q9qyyssqnllnx5kqam7ewekcg68cryhg6gdr2glaqvjl350txrajrp0rsqvshkehp5fffmxgza2z7j9044wrja329xs7mfe4k90cnxcyex4pc0spq7puf7"

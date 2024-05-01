@@ -121,12 +121,9 @@ def main():
 
         gh_service = GithubService(GH_TOKEN)
 
-        qr_url = generate_qr(invoice.payment_request)
-        print(qr_url)
-
         message: str = ""
         message += f"Please pay the invoice: {invoice.payment_request}\n\n"
-        message += f"![Invoice-QR]({qr_url})\n\n"
+        message += f"![Invoice-QR]({generate_qr(invoice.payment_request)})\n\n"
         message += f"See [documentation](./../tree/main/.github/docs/anti-spam-explainer.md) for more details."
         # for images use 
         # ![img-alt](https://raw.githubusercontent.com/<repo>/<repo>/main/<path_to_file>.jpg)
