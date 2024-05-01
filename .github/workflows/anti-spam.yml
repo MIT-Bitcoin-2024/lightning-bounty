@@ -22,7 +22,7 @@ jobs:
           python-version: '3.11'
 
       - name: Install requirements
-        run: pip install requests python-dotenv qrcode
+        run: pip install requests urllib python-dotenv
 
       - name: Waiting for payment (check PR comments)
         env:

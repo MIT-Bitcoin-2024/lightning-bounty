@@ -2,17 +2,10 @@ import os
 import io
 import base64
 import time
-import qrcode
 import dotenv
 import requests
-
-
-def gen_qr_code(data: str) -> str:
-    qr_pil = qrcode.make(data)    
-    buf = io.BytesIO()
-    qr_pil.save(buf)
-    qr_base64 = base64.b64encode(buf.getvalue())
-    return qr_base64
+from qr_code import generate_qr
+# import qrcode
 
 
 class Invoice:
@@ -128,11 +121,16 @@ def main():
 
         gh_service = GithubService(GH_TOKEN)
 
-        qr_code_data = gen_qr_code(invoice.payment_request)
+        qr_url = generate_qr(invoice.payment_request)
+        print(qr_url)
 
         message: str = ""
         message += f"Please pay the invoice: {invoice.payment_request}\n\n"
-        message += f"![QR code](data:image/png;base64,{qr_code_data.decode('utf-8')})"
+        message += f"![Invoice-QR]({qr_url})\n\n"
+        message += f"See [documentation](./../tree/main/.github/docs/anti-spam-explainer.md) for more details."
+        # for images use 
+        # ![img-alt](https://raw.githubusercontent.com/<repo>/<repo>/main/<path_to_file>.jpg)
+
 
         gh_service.comment_on_pr(
             GH_REPO,
