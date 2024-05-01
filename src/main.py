@@ -46,10 +46,7 @@ from lime.common.models.errs import (
 print("testing")
 
 class ExecSettings(ConfigLoader):
-    verbose = 0
-    uuid_digits = 4
-    model_name = 'gpt-3.5-turbo'
-    input_sheet_prefix = 'input'
+
     output_sheet_prefix = 'output'
     use_prompt_cache = True     #TODO - move
     save_tmp_file = False
