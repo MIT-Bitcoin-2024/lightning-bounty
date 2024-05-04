@@ -1,6 +1,5 @@
 import os
 import dotenv
-
 import requests
 
 
@@ -8,7 +7,6 @@ def fetch_reward():
     with open("./reward.txt", "r") as file:
             return file.read()
     
-
 def pay_reward(
         base_url: str,
         api_key: str,
@@ -39,7 +37,7 @@ class GithubService:
         self.gh_token = gh_token
 
     def comment_on_pr(self, repo: str, pr_number: int, message: str):
-        # Set up the headers with the GitHub token
+        
         headers = {
             'Authorization': f'token {self.gh_token}',
             'Accept': 'application/vnd.github.v3+json'
@@ -49,7 +47,6 @@ class GithubService:
 
         response = requests.post(api_url, headers=headers, json={'body': message})
 
-        # Check the response status
         if response.status_code != 201:
             raise GithubException(f"Couldn't comment the message. Response status is {response.status_code}",
                                   api_url,

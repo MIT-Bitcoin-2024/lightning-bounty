@@ -1,0 +1,28 @@
+# v0.1 config for lightning bounties
+
+payments:
+  anti_spam: 
+    on: true
+    amount: 1
+  reward:
+    on: true
+    amount: 20
+
+anti_spam_config:
+  check_payment_attempts: 10
+  check_payment_delay: 10
+
+ai_api:
+  on: true
+  anti_spam_required: true
+  api_params:
+    max_tokens: 200
+  pr_info:
+    diff: true
+  prompt: |
+    In the following diff, please provide a brief summary of the changes made in the PR. 
+    
+    Also include a section where you note any security vulnerabilities present.
+  
+  
+
