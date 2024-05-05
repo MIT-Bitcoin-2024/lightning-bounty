@@ -9,6 +9,22 @@ permissions:
   pull-requests: write
 
 jobs:
+  demo_bolt_eleven
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Setup Python 3.11
+        uses: actions/setup-python@v2
+        with:
+          python-version: '3.11'
+
+      - name: Install bolt11 pkg
+        run: pip install bolt11
+
+      - name: Run script
+        run: bolt11 decode lnbc20n1pnzgkh0pp5k2d7frgeqsmsgg3afl9x9m72s6kl5rpg22qhav4npwk3x98lc58sdqgdpjkcmr0cqzzsxqrrsssp53lyem2rze66e9ecml8hpx4ua34wengqhmpf905xrf5cp55cpak5q9qyyssqnllnx5kqam7ewekcg68cryhg6gdr2glaqvjl350txrajrp0rsqvshkehp5fffmxgza2z7j9044wrja329xs7mfe4k90cnxcyex4pc0spq7puf7
   
   check_that_payment:
     runs-on: ubuntu-latest
