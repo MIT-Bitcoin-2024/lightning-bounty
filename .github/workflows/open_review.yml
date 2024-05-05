@@ -9,7 +9,7 @@ permissions:
   pull-requests: write
 
 jobs:
-  demo_bolt_eleven
+  demo_bolt_eleven:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
