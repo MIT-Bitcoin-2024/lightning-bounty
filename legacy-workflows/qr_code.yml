@@ -54,7 +54,6 @@ jobs:
 
             - checking_id: ${{ steps.extract_values.outputs.checking_id }}
 
-
             ![QR
             Code](https://raw.githubusercontent.com/MIT-Bitcoin-2024/gha-tut/8bbcb9053ae5d8b7de29d2f87a747b0f4a5744d6/assets/bitcoin.svg)`; 
 
